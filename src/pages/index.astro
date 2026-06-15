@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Marcus Forte" description="Marcus Forte - personal site">
+  <section id="hero">
+    <h1>Hi, I&apos;m Marcus Forte</h1>
+    <p class="subtitle">Software Architect</p>
+    <a href="#projects" class="btn">View Projects</a>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      Welcome to my personal site. I&apos;m a software engineer passionate about
+      building reliable, performant systems. Feel free to explore my projects
+      and get in touch.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-grid">
+      <article class="card">
+        <h3>Project Name</h3>
+        <p>
+          A short description of what this project does and the technologies
+          used.
+        </p>
+        <a
+          href="https://github.com/Marcus-Forte"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub -&gt;
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Find me on:</p>
+    <ul class="contact-links">
+      <li>
+        <a
+          href="https://github.com/Marcus-Forte"
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a
+        >
+      </li>
+      <li><a href="mailto:davi2812@hotmail.com">Email</a></li>
+    </ul>
+  </section>
+</BaseLayout>

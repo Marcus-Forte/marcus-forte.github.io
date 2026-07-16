@@ -1,0 +1,68 @@
+---
+import { cv } from "../data/marcus";
+import type { SkillKind } from "../data/icv";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
+---
+
+<BaseLayout
+  title="Skills | Marcus Forte"
+  description="Technical skills, professional qualifications, and languages of Marcus Forte."
+>
+  <section class="page-intro">
+    <p class="eyebrow">Capabilities</p>
+    <h1>Skills & Qualifications</h1>
+    <p class="subtitle">{cv.skillsSummary}</p>
+  </section>
+
+  {
+    skillKinds.map((kind) => (
+      <section class="skills-section skill-kind-section">
+        <p class="eyebrow">Technical & Professional</p>
+        <h2>{kind}</h2>
+        <div class="language-list">
+          {cv.skills
+            .filter((skill) => skill.kind === kind)
+            .map((skill) => (
+              <div class="language-row">
+                <div class="language-label">
+                  <strong>{skill.name}</strong>
+                </div>
+                <div class="level-track" aria-label={`${skill.name}: ${skill.level} out of 10`}>
+                  <span style={`width: ${skill.level * 10}%`} />
+                </div>
+              </div>
+            ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="skills-section">
+    <p class="eyebrow">Languages</p>
+    <h2>Language Proficiency</h2>
+    <div class="language-list">
+      {
+        cv.languages.map((language) => (
+          <div class="language-row">
+            <div class="language-label">
+              <strong>{language.name}</strong>
+            </div>
+            <div class="level-track" aria-label={`${language.name}: ${language.level} out of 10`}>
+              <span style={`width: ${language.level * 10}%`} />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="skills-section">
+    <p class="eyebrow">Professional Development</p>
+    <h2>Qualifications</h2>
+    <ul class="qualification-list">
+      {cv.qualifications.map((qualification) => <li>{qualification}</li>)}
+    </ul>
+  </section>
+</BaseLayout>

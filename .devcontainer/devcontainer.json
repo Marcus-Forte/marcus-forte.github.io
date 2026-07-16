@@ -1,6 +1,6 @@
 {
   "name": "github.io",
-  "image": "node:22",
+  "image": "node:26-bookworm-slim",
   "postCreateCommand": "npm install",
   "forwardPorts": [4321],
   "portsAttributes": {

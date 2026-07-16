@@ -1,41 +1,70 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { cv } from "../data/marcus";
+import marcusPhoto from "../marcus.png";
+
+const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
 ---
 
-<BaseLayout title="Marcus Forte" description="Marcus Forte - personal site">
+<BaseLayout
+  title="Marcus Forte | Software Architect"
+  description="Software architect specializing in embedded systems, robotics, and high-tech industrial software."
+>
   <section id="hero">
-    <h1>Hi, I&apos;m Marcus Forte</h1>
-    <p class="subtitle">Software Architect</p>
-    <a href="#projects" class="btn">View Projects</a>
+    <div class="hero-content">
+      <div class="hero-copy">
+        <p class="eyebrow">Eindhoven, Netherlands</p>
+        <h1>Marcus Forte</h1>
+        <p class="subtitle">Software Architect</p>
+        <a href="#projects" class="btn">View Projects</a>
+      </div>
+      <img src={marcusPhoto.src} alt="Portrait of Marcus Forte" class="hero-photo" />
+    </div>
   </section>
 
   <section id="about">
     <h2>About</h2>
-    <p>
-      Welcome to my personal site. I&apos;m a software engineer passionate about
-      building reliable, performant systems. Feel free to explore my projects
-      and get in touch.
-    </p>
+    <p>{cv.about}</p>
   </section>
 
   <section id="projects">
-    <h2>Projects</h2>
-    <div class="card-grid">
-      <article class="card">
-        <h3>Project Name</h3>
-        <p>
-          A short description of what this project does and the technologies
-          used.
-        </p>
-        <a
-          href="https://github.com/Marcus-Forte"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on GitHub -&gt;
-        </a>
-      </article>
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Professional Experience</p>
+        <h2>Projects</h2>
+      </div>
+      <span class="item-count">{cv.projects.length} projects</span>
     </div>
+    <div class="project-list">
+      {
+        cv.projects.map((project) => (
+          <a href={`/projects/${project.id}`} class="project-card-link">
+            <article class="card project-card">
+              <p class="card-period">{project.period}</p>
+              <p class="company-badge">{project.company}</p>
+              <h3>{project.title}</h3>
+              <p class="project-role">{project.role}</p>
+              <p>{project.description}</p>
+              <ul class="skill-tags" aria-label="Skills used">
+                {project.skills.map((skillId) => {
+                  const skill = skillsById.get(skillId);
+                  return <li>{skill?.name ?? skillId}</li>;
+                })}
+              </ul>
+              <span class="project-link">View Project Details</span>
+            </article>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="milestones">
+    <p class="eyebrow">Beyond the Work</p>
+    <h2>Additional Milestones</h2>
+    <ul class="milestone-list">
+      {cv.milestones.map((milestone) => <li>{milestone}</li>)}
+    </ul>
   </section>
 
   <section id="contact">
@@ -43,13 +72,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <p>Find me on:</p>
     <ul class="contact-links">
       <li>
-        <a
-          href="https://github.com/Marcus-Forte"
-          target="_blank"
-          rel="noopener noreferrer">GitHub</a
-        >
+        <a href="https://github.com/Marcus-Forte" target="_blank" rel="noopener noreferrer">GitHub</a>
       </li>
       <li><a href="mailto:davi2812@hotmail.com">Email</a></li>
+      <li>
+        <a href="https://www.linkedin.com/in/marcus-forte-4b500a118" target="_blank" rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+      </li>
+      <li>
+        <a href="https://www.youtube.com/@practicalsoftwaremarcus" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </li>
     </ul>
   </section>
 </BaseLayout>

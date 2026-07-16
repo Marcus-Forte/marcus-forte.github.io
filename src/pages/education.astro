@@ -1,0 +1,32 @@
+---
+import { cv } from "../data/marcus";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Education | Marcus Forte"
+  description="Education and academic background of Marcus Forte."
+>
+  <section class="page-intro">
+    <p class="eyebrow">Academic Background</p>
+    <h1>Education</h1>
+    <p class="subtitle">
+      Engineering, automation, control, robotics, and nanoelectronics.
+    </p>
+  </section>
+
+  <section class="timeline-section">
+    <ol class="timeline">
+      {
+        cv.educations.map((education) => (
+          <li>
+            <p class="card-period">{education.period}</p>
+            <h2 class="education-degree">{education.degree}</h2>
+            <h3 class="education-institution">{education.institution}</h3>
+            <p>{education.course}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+</BaseLayout>

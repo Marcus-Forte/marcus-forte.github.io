@@ -18,6 +18,7 @@
   --muted: #8b949e;
   --radius: 8px;
   --max-w: 860px;
+  --nav-max-w: 1180px;
 }
 
 html {
@@ -40,7 +41,7 @@ header {
 }
 
 nav {
-  max-width: var(--max-w);
+  max-width: var(--nav-max-w);
   margin: 0 auto;
   padding: 0.85rem 1.5rem;
   display: flex;
@@ -57,18 +58,31 @@ nav {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 1.75rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
 }
 
 nav a {
   color: var(--muted);
   text-decoration: none;
   font-size: 0.9rem;
+  white-space: nowrap;
   transition: color 0.2s;
 }
 
 nav a:hover {
   color: var(--accent);
+}
+
+.nav-print-link {
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  padding: 0.32rem 0.7rem;
+}
+
+.nav-print-link:hover {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
 main {
@@ -213,6 +227,7 @@ h3 {
 .project-card {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .project-card-link {
@@ -224,6 +239,42 @@ h3 {
 .project-card h3 {
   font-size: 1.2rem;
   line-height: 1.3;
+}
+
+.project-title-row {
+  align-items: center;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+}
+
+.project-title-row h1,
+.project-title-row h3 {
+  flex: 1;
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+.project-title-row .project-logo {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.project-card .project-title-row {
+  display: block;
+}
+
+.project-card .project-title-row h3,
+.project-card .card-period,
+.project-card .company-badge {
+  padding-right: 112px;
+}
+
+.project-card .project-logo {
+  margin: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 
 .project-card .company-badge,
@@ -245,6 +296,24 @@ h3 {
   font-size: 0.92rem;
   font-weight: 600;
   margin-bottom: 0.8rem;
+}
+
+.project-logo {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: block;
+  height: 96px;
+  margin-bottom: 0.35rem;
+  object-fit: contain;
+  padding: 0.25rem;
+  width: 96px;
+}
+
+.page-intro .project-logo {
+  height: 140px;
+  margin-bottom: 0;
+  width: 140px;
 }
 
 .project-link {
@@ -294,6 +363,36 @@ h3 {
 
 .page-intro .subtitle {
   max-width: 42rem;
+}
+
+.print-page-actions {
+  margin-top: 1rem;
+}
+
+.print-document {
+  break-inside: avoid;
+}
+
+.print-media-links {
+  margin-top: 0.9rem;
+}
+
+.print-media-links ul {
+  list-style: none;
+}
+
+.print-media-links li {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.print-skill-group + .print-skill-group {
+  margin-top: 1.25rem;
+}
+
+.print-contact-list {
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
 .timeline-section {
@@ -568,6 +667,10 @@ footer {
     font-size: 0.78rem;
   }
 
+  .nav-print-link {
+    padding: 0.22rem 0.48rem;
+  }
+
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
@@ -583,5 +686,61 @@ footer {
   .hero-photo {
     height: 176px;
     width: 176px;
+  }
+}
+
+@media print {
+  :root {
+    --bg: #fff;
+    --surface: #fff;
+    --border: #ddd;
+    --text: #111;
+    --muted: #333;
+    --accent: #0a4a8a;
+  }
+
+  html,
+  body {
+    background: #fff;
+    color: #111;
+  }
+
+  header,
+  footer,
+  .print-page-actions,
+  .nav-print-link,
+  .image-lightbox {
+    display: none !important;
+  }
+
+  main {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  section,
+  .skills-section,
+  .page-intro {
+    border: 0;
+    padding: 0 0 1rem;
+  }
+
+  .card,
+  .project-image-card,
+  .project-video-wrap {
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a,
+  .contact-links a,
+  .card a,
+  .project-link {
+    color: #111;
+    text-decoration: underline;
   }
 }

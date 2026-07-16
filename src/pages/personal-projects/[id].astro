@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cv } from "../../data/marcus";
 
 export function getStaticPaths() {
-  return cv.projects.map((project) => ({ params: { id: project.id } }));
+  return cv.personalProjects.map((project) => ({ params: { id: project.id } }));
 }
 
 const { id } = Astro.params;
-const project = cv.projects.find((entry) => entry.id === id);
+const project = cv.personalProjects.find((entry) => entry.id === id);
 const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
 
 const toEmbedUrl = (rawUrl?: string) => {
@@ -41,23 +41,17 @@ const toEmbedUrl = (rawUrl?: string) => {
   return rawUrl;
 };
 
-const videoEmbedUrl = toEmbedUrl(project?.videoEmbedUrl);
+const videoEmbedUrl = toEmbedUrl(project?.video);
 
 if (!project) {
-  throw new Error(`Project page not found for id: ${id}`);
+  throw new Error(`Personal project page not found for id: ${id}`);
 }
 ---
 
-<BaseLayout title={`${project.title} | Project`} description={project.description}>
+<BaseLayout title={`${project.title} | Personal Project`} description={project.description}>
   <section class="page-intro">
-    <p class="eyebrow">Project Detail</p>
-    <div class="project-title-row">
-      <h1>{project.title}</h1>
-      {project.logo && <img src={project.logo} alt={`${project.company} logo`} class="project-logo" loading="lazy" />}
-    </div>
-    <p class="project-role">{project.role}</p>
-    <p class="company-badge">{project.company}</p>
-    <p class="subtitle">{project.period}</p>
+    <p class="eyebrow">Personal Project Detail</p>
+    <h1>{project.title}</h1>
   </section>
 
   <section class="skills-section">
@@ -84,7 +78,7 @@ if (!project) {
   }
 
   {
-    project.gifUrl && (
+    project.gif && (
       <section class="skills-section">
         <h2>GIF</h2>
         <figure class="project-image-card project-image-clickable">
@@ -92,11 +86,11 @@ if (!project) {
             type="button"
             class="image-zoom-trigger"
             data-enlarge-image
-            data-image-src={project.gifUrl}
+            data-image-src={project.gif}
             data-image-alt={`${project.title} animated preview`}
             aria-label={`Enlarge ${project.title} animated preview`}
           >
-            <img src={project.gifUrl} alt={`${project.title} animated preview`} loading="lazy" />
+            <img src={project.gif} alt={`${project.title} animated preview`} loading="lazy" />
           </button>
         </figure>
       </section>

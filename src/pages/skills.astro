@@ -16,10 +16,11 @@ const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
     <p class="subtitle">{cv.skillsSummary}</p>
   </section>
 
+  <p class="eyebrow">Technical & Professional</p>
+
   {
     skillKinds.map((kind) => (
       <section class="skills-section skill-kind-section">
-        <p class="eyebrow">Technical & Professional</p>
         <h2>{kind}</h2>
         <div class="language-list">
           {cv.skills
@@ -60,7 +61,7 @@ const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
 
   <section class="skills-section">
     <p class="eyebrow">Professional Development</p>
-    <h2>Qualifications</h2>
+    <h2>Qualifications & Trainings</h2>
     <ul class="qualification-list">
       {cv.qualifications.map((qualification) => <li>{qualification}</li>)}
     </ul>

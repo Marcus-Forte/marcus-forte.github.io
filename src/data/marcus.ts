@@ -1,315 +1,57 @@
 import type { CurriculumVitae } from "./icv";
 
 export const skills = [
-  {
-    id: "software-architecture",
-    name: "Software Architecture & Software Design",
-    level: 8,
-    kind: "Design",
-  },
-  {
-    id: "data-definitions",
-    name: "Data Definitions, gRPC, FlatBuffers",
-    level: 10,
-    kind: "Design",
-  },
-  {
-    id: "cpp",
-    name: "C++14/C++17/C++20/C++23",
-    level: 10,
-    kind: "Technology",
-  },
-  {
-    id: "embedded-cpp",
-    name: "Embedded C++",
-    level: 8,
-    kind: "Technology",
-  },
-  {
-    id: "c",
-    name: "C",
-    level: 8,
-    kind: "Technology",
-  },
-  {
-    id: "python",
-    name: "Python",
-    level: 9,
-    kind: "Technology",
-  },
-  {
-    id: "typescript-javascript",
-    name: "TypeScript / JavaScript",
-    level: 7,
-    kind: "Technology",
-  },
-  {
-    id: "matlab-octave",
-    name: "MATLAB / Octave",
-    level: 7,
-    kind: "Technology",
-  },
-  {
-    id: "bash",
-    name: "Linux",
-    level: 9,
-    kind: "Technology",
-  },
-  {
-    id: "cuda-opencl",
-    name: "CUDA / OpenCL",
-    level: 7,
-    kind: "Technology",
-  },
-  {
-    id: "docker",
-    name: "Docker & Containers",
-    level: 10,
-    kind: "Technology",
-  },
-  {
-    id: "ci-cd",
-    name: "CI/CD",
-    level: 8,
-    kind: "Technology",
-  },
-  {
-    id: "git-github",
-    name: "Git / GitHub",
-    level: 10,
-    kind: "Technology",
-  },
-  {
-    id: "databases",
-    name: "Databases: MongoDB, SQL",
-    level: 7,
-    kind: "Technology",
-  },
-  {
-    id: "latex",
-    name: "LaTeX",
-    level: 8,
-    kind: "Technology",
-  },
-  {
-    id: "networking",
-    name: "Networking",
-    level: 6,
-    kind: "Technology",
-  },
-  {
-    id: "langchain",
-    name: "LangChain",
-    level: 8,
-    kind: "Technology",
-  },
-  {
-    id: "microsoft-azure",
-    name: "Microsoft Azure",
-    level: 5,
-    kind: "Technology",
-  },
-  {
-    id: "github-copilot",
-    name: "GitHub Copilot",
-    level: 9,
-    kind: "Technology",
-  },
-  {
-    id: "llm",
-    name: "LLM",
-    level: 9,
-    kind: "Technology",
-  },
-  {
-    id: "yocto",
-    name: "Yocto",
-    level: 2,
-    kind: "Technology",
-  },
-  {
-    id: "jenkins",
-    name: "Jenkins",
-    level: 8,
-    kind: "Technology",
-  },
-  {
-    id: "csharp",
-    name: "C#",
-    level: 5,
-    kind: "Technology",
-  },
-  {
-    id: "knowledge-sharing",
-    name: "Knowledge Sharing",
-    level: 10,
-    kind: "People",
-  },
-  {
-    id: "clear-communication",
-    name: "Clear Communication",
-    level: 10,
-    kind: "People",
-  },
-  {
-    id: "multi-disciplinary-teamwork",
-    name: "Multi-Disciplinary Teamwork",
-    level: 10,
-    kind: "People",
-  },
-  {
-    id: "scrum-agile",
-    name: "Scrum & Agile",
-    level: 8,
-    kind: "People",
-  },
-  {
-    id: "technical-team-leadership",
-    name: "Technical Team Leadership",
-    level: 9,
-    kind: "People",
-  },
-  {
-    id: "innovation-tech-business",
-    name: "Innovation & Tech Business",
-    level: 9,
-    kind: "People",
-  },
-
-  {
-    id: "computer-vision",
-    name: "Computer Vision",
-    level: 9,
-    kind: "Technique",
-  },
-  {
-    id: "point-cloud-processing",
-    name: "Point Cloud Processing",
-    level: 10,
-    kind: "Technique",
-  },
-  {
-    id: "ros",
-    name: "ROS and ROS2",
-    level: 10,
-    kind: "Technique",
-  },
-  {
-    id: "mems-lidar-sensors",
-    name: "MEMS and LiDAR Sensors",
-    level: 10,
-    kind: "Technique",
-  },
-  {
-    id: "embedded-linux",
-    name: "Embedded Linux",
-    level: 10,
-    kind: "Technique",
-  },
-  {
-    id: "rtos",
-    name: "RTOS",
-    level: 7,
-    kind: "Technique",
-  },
-  {
-    id: "slam",
-    name: "SLAM (Simultaneous Localization and Mapping)",
-    level: 8,
-    kind: "Technique",
-  },
-  {
-    id: "sensor-fusion",
-    name: "Sensor Fusion",
-    level: 8,
-    kind: "Technique",
-  },
-  {
-    id: "mobile-robotics",
-    name: "Mobile Robotics",
-    level: 8,
-    kind: "Technique",
-  },
-  {
-    id: "iot",
-    name: "IoT",
-    level: 8,
-    kind: "Technique",
-  },
-  {
-    id: "low-latency-communication",
-    name: "Low-Latency Communication",
-    level: 7,
-    kind: "Technique",
-  },
-  {
-    id: "ai-assisted-development",
-    name: "AI-Assisted Development",
-    level: 10,
-    kind: "Technique",
-  },
-  {
-    id: "c4-architecture",
-    name: "C4 Architecture",
-    level: 9,
-    kind: "Design",
-  },
-  {
-    id: "ooad",
-    name: "OOAD",
-    level: 9,
-    kind: "Technique",
-  },
-  {
-    id: "instrumentation-engineering",
-    name: "Instrumentation Engineering",
-    level: 5,
-    kind: "Technique",
-  },
-  {
-    id: "domain-driven-design",
-    name: "Domain-Driven Design",
-    level: 7,
-    kind: "Design",
-  },
-
-  {
-    id: "react",
-    name: "React",
-    level: 4,
-    kind: "Technique",
-  },
-
-  {
-    id: "devops",
-    name: "DevOps",
-    level: 9,
-    kind: "Technique",
-  },
-  {
-    id: "digital-twins",
-    name: "Digital Twins",
-    level: 6,
-    kind: "Technique",
-  },
-  {
-    id: "solid-architecture",
-    name: "SOLID Architecture",
-    level: 7,
-    kind: "Design",
-  },
-  {
-    id: "control-systems",
-    name: "Control Systems",
-    level: 9,
-    kind: "Technique",
-  },
-  {
-    id: "uav",
-    name: "UAV",
-    level: 7,
-    kind: "Technology",
-  },
+  { id: "software-architecture", name: "Software Architecture & Software Design", level: 8, kind: "Design" },
+  { id: "data-definitions", name: "Data Definitions, gRPC, FlatBuffers", level: 10, kind: "Design" },
+  { id: "cpp", name: "C++14/C++17/C++20/C++23", level: 10, kind: "Technology" },
+  { id: "embedded-cpp", name: "Embedded C++", level: 8, kind: "Technology" },
+  { id: "c", name: "C", level: 8, kind: "Technology" },
+  { id: "python", name: "Python", level: 9, kind: "Technology" },
+  { id: "typescript-javascript", name: "TypeScript / JavaScript", level: 7, kind: "Technology" },
+  { id: "matlab-octave", name: "MATLAB / Octave", level: 7, kind: "Technology" },
+  { id: "bash", name: "Linux", level: 9, kind: "Technology" },
+  { id: "cuda-opencl", name: "CUDA / OpenCL", level: 7, kind: "Technology" },
+  { id: "docker", name: "Docker & Containers", level: 10, kind: "Technology" },
+  { id: "ci-cd", name: "CI/CD", level: 8, kind: "Technology" },
+  { id: "git-github", name: "Git / GitHub", level: 10, kind: "Technology" },
+  { id: "databases", name: "Databases: MongoDB, SQL", level: 7, kind: "Technology" },
+  { id: "latex", name: "LaTeX", level: 8, kind: "Technology" },
+  { id: "networking", name: "Networking", level: 6, kind: "Technology" },
+  { id: "langchain", name: "LangChain", level: 8, kind: "Technology" },
+  { id: "microsoft-azure", name: "Microsoft Azure", level: 5, kind: "Technology" },
+  { id: "github-copilot", name: "GitHub Copilot", level: 9, kind: "Technology" },
+  { id: "llm", name: "LLM", level: 9, kind: "Technology" },
+  { id: "yocto", name: "Yocto", level: 2, kind: "Technology" },
+  { id: "jenkins", name: "Jenkins", level: 8, kind: "Technology" },
+  { id: "csharp", name: "C#", level: 5, kind: "Technology" },
+  { id: "knowledge-sharing", name: "Knowledge Sharing", level: 10, kind: "People" },
+  { id: "clear-communication", name: "Clear Communication", level: 10, kind: "People" },
+  { id: "multi-disciplinary-teamwork", name: "Multi-Disciplinary Teamwork", level: 10, kind: "People" },
+  { id: "scrum-agile", name: "Scrum & Agile", level: 8, kind: "People" },
+  { id: "technical-team-leadership", name: "Technical Team Leadership", level: 9, kind: "People" },
+  { id: "innovation-tech-business", name: "Innovation & Tech Business", level: 9, kind: "People" },
+  { id: "computer-vision", name: "Computer Vision", level: 9, kind: "Technique" },
+  { id: "point-cloud-processing", name: "Point Cloud Processing", level: 10, kind: "Technique" },
+  { id: "ros", name: "ROS and ROS2", level: 10, kind: "Technique" },
+  { id: "mems-lidar-sensors", name: "MEMS and LiDAR Sensors", level: 10, kind: "Technique" },
+  { id: "embedded-linux", name: "Embedded Linux", level: 10, kind: "Technique" },
+  { id: "rtos", name: "RTOS", level: 7, kind: "Technique" },
+  { id: "slam", name: "SLAM (Simultaneous Localization and Mapping)", level: 8, kind: "Technique" },
+  { id: "sensor-fusion", name: "Sensor Fusion", level: 8, kind: "Technique" },
+  { id: "mobile-robotics", name: "Mobile Robotics", level: 8, kind: "Technique" },
+  { id: "iot", name: "IoT", level: 8, kind: "Technique" },
+  { id: "low-latency-communication", name: "Low-Latency Communication", level: 7, kind: "Technique" },
+  { id: "ai-assisted-development", name: "AI-Assisted Development", level: 10, kind: "Technique" },
+  { id: "c4-architecture", name: "C4 Architecture", level: 9, kind: "Design" },
+  { id: "ooad", name: "OOAD", level: 9, kind: "Technique" },
+  { id: "instrumentation-engineering", name: "Instrumentation Engineering", level: 5, kind: "Technique" },
+  { id: "domain-driven-design", name: "Domain-Driven Design", level: 7, kind: "Design" },
+  { id: "react", name: "React", level: 4, kind: "Technique" },
+  { id: "devops", name: "DevOps", level: 9, kind: "Technique" },
+  { id: "digital-twins", name: "Digital Twins", level: 6, kind: "Technique" },
+  { id: "solid-architecture", name: "SOLID Architecture", level: 7, kind: "Design" },
+  { id: "control-systems", name: "Control Systems", level: 9, kind: "Technique" },
+  { id: "uav", name: "UAV", level: 7, kind: "Technology" },
 ] as const;
 
 export type MarcusSkillId = (typeof skills)[number]["id"];
@@ -317,7 +59,7 @@ export type MarcusSkillId = (typeof skills)[number]["id"];
 const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
   {
     id: "spo4x",
-    company: "Sioux Technologies (@ Vanderlande)",
+    company: "Vanderlande (via Sioux Technologies)",
     title: "SPO4x",
     period: "08/2024 - Current",
     role: "Software Architect",
@@ -335,6 +77,7 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
     ],
     videoEmbedUrl: "https://www.youtube.com/watch?v=uN-ywLXrYBc",
     // images: ["/images/projects/spo4x.jpg"],
+    logo: "/vl.png",
   },
   {
     id: "genai-knowledge-management",
@@ -345,6 +88,7 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
     description:
       "Pilots and presents an internal enterprise system that assists with project and knowledge matching for customer problems, engaging company management and stakeholders.",
     skills: ["langchain", "python", "microsoft-azure", "github-copilot", "docker", "llm", "react"],
+    logo: "/sioux.png",
   },
   {
     id: "ai-assisted-development-trainer",
@@ -354,6 +98,7 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
     role: "Software Architect / Trainer",
     description: "Delivers company-wide training on AI-assisted software development.",
     skills: ["github-copilot", "ai-assisted-development", "knowledge-sharing"],
+    logo: "/sioux.png",
   },
   {
     id: "delta-embedded-linux",
@@ -373,6 +118,7 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
       "multi-disciplinary-teamwork",
     ],
     images: ["/d0.png", "/d1.png"],
+    logo: "/sioux.png",
   },
   {
     id: "matlab-embedding-tooling",
@@ -383,6 +129,7 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
     description:
       "Developed and maintained tooling that generates a well-defined customized IDL interface for constrained customer environments, allowing MATLAB model embedding with verification, type checking, and local and remote testing. Later evolved the tightly coupled on-premises tool into a scalable, secure microservice with CI and DevOps practices.",
     skills: ["matlab-octave", "cpp", "python", "ci-cd", "domain-driven-design", "jenkins", "devops"],
+    logo: "/asml.svg",
   },
   {
     id: "model-based-engineering",
@@ -471,6 +218,23 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
   },
 ];
 
+const personalProjects: CurriculumVitae<MarcusSkillId>["personalProjects"] = [
+  {
+    id: "portable-scanner",
+    title: "Portable 3D Scanner",
+    description: "Developed a portable 3D scanner for capturing real-world objects and creating 3D models.",
+    skills: ["c", "cpp", "python", "data-definitions", "sensor-fusion", "mems-lidar-sensors", "point-cloud-processing"],
+  },
+  {
+    id: "practical-software",
+    title: "Practical Software",
+    description:
+      "Educational content initiative focused on practical software-engineering topics, architecture, and AI-assisted development workflows.",
+    skills: ["github-copilot", "ai-assisted-development", "clear-communication", "knowledge-sharing", "cpp", "python"],
+    video: "https://www.youtube.com/watch?v=-kvrorbjzco",
+  },
+];
+
 export const cv: CurriculumVitae<MarcusSkillId> = {
   about:
     "Software Architect with an electrical-engineering background and a passion for embedded systems, embedded Linux, mobile robotics, sensor fusion, and laser technology. Marcus builds high-quality, high-performance, testable industrial software that works closely with hardware and equipment. A former researcher in SLAM and autonomous-vehicle localization, he brings a practical appreciation for turning science into engineering products. He also creates computer-vision projects and teaches software and technology through Practical Software.",
@@ -503,23 +267,12 @@ export const cv: CurriculumVitae<MarcusSkillId> = {
     },
   ],
   projects,
+  personalProjects,
   languages: [
-    {
-      name: "Portuguese",
-      level: 10,
-    },
-    {
-      name: "English",
-      level: 9,
-    },
-    {
-      name: "German",
-      level: 6,
-    },
-    {
-      name: "Dutch",
-      level: 1,
-    },
+    { name: "Portuguese", level: 10 },
+    { name: "English", level: 9 },
+    { name: "German", level: 6 },
+    { name: "Dutch", level: 1 },
   ],
   skills,
   qualifications: [

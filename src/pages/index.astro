@@ -42,7 +42,12 @@ const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
             <article class="card project-card">
               <p class="card-period">{project.period}</p>
               <p class="company-badge">{project.company}</p>
-              <h3>{project.title}</h3>
+              <div class="project-title-row">
+                <h3>{project.title}</h3>
+                {project.logo && (
+                  <img src={project.logo} alt={`${project.company} logo`} class="project-logo" loading="lazy" />
+                )}
+              </div>
               <p class="project-role">{project.role}</p>
               <p>{project.description}</p>
               <ul class="skill-tags" aria-label="Skills used">

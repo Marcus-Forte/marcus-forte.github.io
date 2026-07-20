@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cv } from "../../data/marcus";
+import { textToHtmlBreaks } from "../../utils/text";
 
 export function getStaticPaths() {
   return cv.personalProjects.map((project) => ({ params: { id: project.id } }));
@@ -41,7 +42,8 @@ const toEmbedUrl = (rawUrl?: string) => {
   return rawUrl;
 };
 
-const videoEmbedUrl = toEmbedUrl(project?.video);
+const videoEmbedUrl = toEmbedUrl(project?.videoEmbedUrl);
+const gifUrl = project?.gif || project?.gifUrl;
 
 if (!project) {
   throw new Error(`Personal project page not found for id: ${id}`);
@@ -51,12 +53,39 @@ if (!project) {
 <BaseLayout title={`${project.title} | Personal Project`} description={project.description}>
   <section class="page-intro">
     <p class="eyebrow">Personal Project Detail</p>
-    <h1>{project.title}</h1>
+    <div class="project-title-row">
+      <h1>{project.title}</h1>
+      {
+        project.logo && (
+          <img
+            src={project.logo}
+            alt={project.company ? `${project.company} logo` : `${project.title} logo`}
+            class="project-logo"
+            loading="lazy"
+          />
+        )
+      }
+    </div>
+    {project.role && <p class="project-role">{project.role}</p>}
+    {project.company && <p class="company-badge">{project.company}</p>}
+    {project.period && <p class="subtitle">{project.period}</p>}
   </section>
 
   <section class="skills-section">
     <h2>Description</h2>
-    <p>{project.description}</p>
+    <p set:html={textToHtmlBreaks(project.description)} />
+    {
+      (project.responsabilities?.length ?? 0) > 0 && (
+        <>
+          <p class="project-responsabilities-title">Responsabilities</p>
+          <ul class="project-responsabilities" aria-label="Key responsibilities">
+            {project.responsabilities?.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </>
+      )
+    }
   </section>
 
   {
@@ -78,7 +107,7 @@ if (!project) {
   }
 
   {
-    project.gif && (
+    gifUrl && (
       <section class="skills-section">
         <h2>GIF</h2>
         <figure class="project-image-card project-image-clickable">
@@ -86,11 +115,11 @@ if (!project) {
             type="button"
             class="image-zoom-trigger"
             data-enlarge-image
-            data-image-src={project.gif}
+            data-image-src={gifUrl}
             data-image-alt={`${project.title} animated preview`}
             aria-label={`Enlarge ${project.title} animated preview`}
           >
-            <img src={project.gif} alt={`${project.title} animated preview`} loading="lazy" />
+            <img src={gifUrl} alt={`${project.title} animated preview`} loading="lazy" />
           </button>
         </figure>
       </section>

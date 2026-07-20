@@ -1,17 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cv } from "../../data/marcus";
-import type { PersonalProject } from "../../data/icv";
+import { textToHtmlBreaks } from "../../utils/text";
 
 const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
-
-const toPreviewImage = (project: PersonalProject<string>) => {
-  if ((project.images?.length ?? 0) > 0) {
-    return project.images?.[0];
-  }
-
-  return project.gif;
-};
 ---
 
 <BaseLayout
@@ -24,21 +16,48 @@ const toPreviewImage = (project: PersonalProject<string>) => {
     <p class="subtitle">Side initiatives, experiments, and educational projects built outside client engagements.</p>
   </section>
 
-  <section class="skills-section">
+  <section id="projects">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Independent Work</p>
+        <h2>Projects</h2>
+      </div>
+      <span class="item-count">{cv.personalProjects.length} projects</span>
+    </div>
     {
       cv.personalProjects.length > 0 ? (
         <div class="project-list">
           {cv.personalProjects.map((project) => {
-            const previewImage = toPreviewImage(project);
             return (
               <a href={`/personal-projects/${project.id}`} class="project-card-link">
-                <article class="card project-card">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  {previewImage && (
-                    <figure class="project-image-card">
-                      <img src={previewImage} alt={`${project.title} preview`} loading="lazy" />
-                    </figure>
+                <article class:list={["card", "project-card", { "project-card-with-logo": !!project.logo }]}>
+                  {project.period && <p class="card-period">{project.period}</p>}
+                  {project.company && <p class="company-badge">{project.company}</p>}
+
+                  <div class="project-title-row">
+                    <h3>{project.title}</h3>
+                    {project.logo && (
+                      <img
+                        src={project.logo}
+                        alt={project.company ? `${project.company} logo` : `${project.title} logo`}
+                        class="project-logo"
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+
+                  {project.role && <p class="project-role">{project.role}</p>}
+
+                  <p set:html={textToHtmlBreaks(project.description)} />
+                  {(project.responsabilities?.length ?? 0) > 0 && (
+                    <>
+                      <p class="project-responsabilities-title">Responsabilities</p>
+                      <ul class="project-responsabilities" aria-label="Key responsibilities">
+                        {project.responsabilities?.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    </>
                   )}
                   <ul class="skill-tags" aria-label={`Skills used in ${project.title}`}>
                     {project.skills.map((skillId) => {

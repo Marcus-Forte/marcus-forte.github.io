@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { cv } from "../data/marcus";
 import marcusPhoto from "../marcus.png";
+import { textToHtmlBreaks } from "../utils/text";
 
 const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
 ---
@@ -24,7 +25,7 @@ const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
 
   <section id="about">
     <h2>About</h2>
-    <p>{cv.about}</p>
+    <p set:html={textToHtmlBreaks(cv.about)} />
   </section>
 
   <section id="projects">
@@ -49,7 +50,17 @@ const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
                 )}
               </div>
               <p class="project-role">{project.role}</p>
-              <p>{project.description}</p>
+              <p set:html={textToHtmlBreaks(project.description)} />
+              {(project.responsabilities?.length ?? 0) > 0 && (
+                <>
+                  <p class="project-responsabilities-title">Responsabilities</p>
+                  <ul class="project-responsabilities" aria-label="Key responsibilities">
+                    {project.responsabilities?.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
               <ul class="skill-tags" aria-label="Skills used">
                 {project.skills.map((skillId) => {
                   const skill = skillsById.get(skillId);

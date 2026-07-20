@@ -2,191 +2,377 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { cv } from "../data/marcus";
 import type { SkillKind } from "../data/icv";
+import { textToHtmlBreaks } from "../utils/text";
 
 const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
 const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
 ---
 
-<BaseLayout title="Print CV | Marcus Forte" description="Print-friendly full curriculum vitae of Marcus Forte.">
-  <section class="page-intro print-intro">
-    <p class="eyebrow">Print Ready</p>
-    <h1>Marcus Forte - Full CV</h1>
-    <p class="subtitle">
-      A consolidated printable view with content from projects, education, skills, milestones, and contact.
-    </p>
-    <div class="print-page-actions">
-      <button type="button" class="btn" onclick="window.print()">Print / Save as PDF</button>
-    </div>
-  </section>
+<BaseLayout title={`Print CV | ${cv.name}`} description={`Print-friendly full curriculum vitae of ${cv.name}.`}>
+  <div data-pdf-export-root>
+    <section class="page-intro print-intro">
+      <h1>{cv.name}</h1>
+      <div class="print-page-actions pdf-export-exclude">
+        <button type="button" class="btn" data-export-pdf>Download PDF</button>
+      </div>
+    </section>
 
-  <section class="skills-section print-document">
-    <h2>About</h2>
-    <p>{cv.about}</p>
-  </section>
+    <section class="skills-section print-document">
+      <h2>About</h2>
+      <p set:html={textToHtmlBreaks(cv.about)} />
+    </section>
 
-  <section class="skills-section print-document">
-    <h2>Projects</h2>
-    <div class="project-list">
+    <section class="skills-section print-document">
+      <h2>Projects</h2>
+      <div class="project-list">
+        {
+          cv.projects.map((project) => (
+            <article class="card project-card">
+              <p class="card-period">{project.period}</p>
+              <p class="company-badge">{project.company}</p>
+              <h3>{project.title}</h3>
+              <p class="project-role">{project.role}</p>
+              <p set:html={textToHtmlBreaks(project.description)} />
+              {(project.responsabilities?.length ?? 0) > 0 && (
+                <>
+                  <p class="project-responsabilities-title">Responsabilities</p>
+                  <ul class="project-responsabilities" aria-label={`Key responsibilities in ${project.title}`}>
+                    {project.responsabilities?.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <ul class="skill-tags" aria-label={`Skills used in ${project.title}`}>
+                {project.skills.map((skillId) => {
+                  const skill = skillsById.get(skillId);
+                  return <li>{skill?.name ?? skillId}</li>;
+                })}
+              </ul>
+
+              {(project.videoEmbedUrl || project.gifUrl || (project.images?.length ?? 0) > 0) && (
+                <div class="print-media-links">
+                  <p class="eyebrow">Media</p>
+                  <ul>
+                    {project.videoEmbedUrl && (
+                      <li>
+                        Video: <a href={project.videoEmbedUrl}>{project.videoEmbedUrl}</a>
+                      </li>
+                    )}
+                    {project.gifUrl && (
+                      <li>
+                        GIF: <a href={project.gifUrl}>{project.gifUrl}</a>
+                      </li>
+                    )}
+                    {(project.images ?? []).map((imageUrl, index) => (
+                      <li>
+                        Image {index + 1}: <a href={imageUrl}>{imageUrl}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="skills-section print-document">
+      <h2>Personal Projects</h2>
+      <div class="project-list">
+        {
+          cv.personalProjects.map((project) => (
+            <article class="card project-card">
+              <h3>{project.title}</h3>
+              <p set:html={textToHtmlBreaks(project.description)} />
+              {(project.responsabilities?.length ?? 0) > 0 && (
+                <>
+                  <p class="project-responsabilities-title">Responsabilities</p>
+                  <ul class="project-responsabilities" aria-label={`Key responsibilities in ${project.title}`}>
+                    {project.responsabilities?.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <ul class="skill-tags" aria-label={`Skills used in ${project.title}`}>
+                {project.skills.map((skillId) => {
+                  const skill = skillsById.get(skillId);
+                  return <li>{skill?.name ?? skillId}</li>;
+                })}
+              </ul>
+
+              {(project.videoEmbedUrl || project.gifUrl || (project.images?.length ?? 0) > 0) && (
+                <div class="print-media-links">
+                  <p class="eyebrow">Media</p>
+                  <ul>
+                    {project.videoEmbedUrl && (
+                      <li>
+                        Video: <a href={project.videoEmbedUrl}>{project.videoEmbedUrl}</a>
+                      </li>
+                    )}
+                    {project.gifUrl && (
+                      <li>
+                        GIF: <a href={project.gifUrl}>{project.gifUrl}</a>
+                      </li>
+                    )}
+                    {(project.images ?? []).map((imageUrl, index) => (
+                      <li>
+                        Image {index + 1}: <a href={imageUrl}>{imageUrl}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="skills-section print-document">
+      <h2>Education</h2>
+      <ol class="timeline">
+        {
+          cv.educations.map((education) => (
+            <li>
+              <p class="card-period">{education.period}</p>
+              <h3 class="education-degree">{education.degree}</h3>
+              <p class="education-institution">{education.institution}</p>
+              <p>{education.course}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="skills-section print-document">
+      <h2>Skills</h2>
       {
-        cv.projects.map((project) => (
-          <article class="card project-card">
-            <p class="card-period">{project.period}</p>
-            <p class="company-badge">{project.company}</p>
-            <h3>{project.title}</h3>
-            <p class="project-role">{project.role}</p>
-            <p>{project.description}</p>
-            <ul class="skill-tags" aria-label={`Skills used in ${project.title}`}>
-              {project.skills.map((skillId) => {
-                const skill = skillsById.get(skillId);
-                return <li>{skill?.name ?? skillId}</li>;
-              })}
+        skillKinds.map((kind) => (
+          <div class="print-skill-group">
+            <h3>{kind}</h3>
+            <ul class="skill-tags skill-cloud" aria-label={`${kind} skills`}>
+              {cv.skills
+                .filter((skill) => skill.kind === kind)
+                .map((skill) => (
+                  <li>{`${skill.name} (${skill.level}/10)`}</li>
+                ))}
             </ul>
-
-            {(project.videoEmbedUrl || project.gifUrl || (project.images?.length ?? 0) > 0) && (
-              <div class="print-media-links">
-                <p class="eyebrow">Media</p>
-                <ul>
-                  {project.videoEmbedUrl && (
-                    <li>
-                      Video: <a href={project.videoEmbedUrl}>{project.videoEmbedUrl}</a>
-                    </li>
-                  )}
-                  {project.gifUrl && (
-                    <li>
-                      GIF: <a href={project.gifUrl}>{project.gifUrl}</a>
-                    </li>
-                  )}
-                  {(project.images ?? []).map((imageUrl, index) => (
-                    <li>
-                      Image {index + 1}: <a href={imageUrl}>{imageUrl}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </article>
+          </div>
         ))
       }
-    </div>
-  </section>
+    </section>
 
-  <section class="skills-section print-document">
-    <h2>Personal Projects</h2>
-    <div class="project-list">
-      {
-        cv.personalProjects.map((project) => (
-          <article class="card project-card">
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <ul class="skill-tags" aria-label={`Skills used in ${project.title}`}>
-              {project.skills.map((skillId) => {
-                const skill = skillsById.get(skillId);
-                return <li>{skill?.name ?? skillId}</li>;
-              })}
-            </ul>
+    <section class="skills-section print-document">
+      <h2>Languages</h2>
+      <ul class="qualification-list">
+        {cv.languages.map((language) => <li>{`${language.name}: ${language.level}/10`}</li>)}
+      </ul>
+    </section>
 
-            {(project.video || project.gif || (project.images?.length ?? 0) > 0) && (
-              <div class="print-media-links">
-                <p class="eyebrow">Media</p>
-                <ul>
-                  {project.video && (
-                    <li>
-                      Video: <a href={project.video}>{project.video}</a>
-                    </li>
-                  )}
-                  {project.gif && (
-                    <li>
-                      GIF: <a href={project.gif}>{project.gif}</a>
-                    </li>
-                  )}
-                  {(project.images ?? []).map((imageUrl, index) => (
-                    <li>
-                      Image {index + 1}: <a href={imageUrl}>{imageUrl}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </article>
-        ))
-      }
-    </div>
-  </section>
+    <section class="skills-section print-document">
+      <h2>Qualifications & Trainings</h2>
+      <ul class="qualification-list">
+        {cv.qualifications.map((qualification) => <li>{qualification}</li>)}
+      </ul>
+    </section>
 
-  <section class="skills-section print-document">
-    <h2>Education</h2>
-    <ol class="timeline">
-      {
-        cv.educations.map((education) => (
-          <li>
-            <p class="card-period">{education.period}</p>
-            <h3 class="education-degree">{education.degree}</h3>
-            <p class="education-institution">{education.institution}</p>
-            <p>{education.course}</p>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
+    <section class="skills-section print-document">
+      <h2>Additional Milestones</h2>
+      <ul class="milestone-list">
+        {cv.milestones.map((milestone) => <li>{milestone}</li>)}
+      </ul>
+    </section>
 
-  <section class="skills-section print-document">
-    <h2>Skills</h2>
-    {
-      skillKinds.map((kind) => (
-        <div class="print-skill-group">
-          <h3>{kind}</h3>
-          <ul class="skill-tags skill-cloud" aria-label={`${kind} skills`}>
-            {cv.skills
-              .filter((skill) => skill.kind === kind)
-              .map((skill) => (
-                <li>{`${skill.name} (${skill.level}/10)`}</li>
-              ))}
-          </ul>
-        </div>
-      ))
-    }
-  </section>
-
-  <section class="skills-section print-document">
-    <h2>Languages</h2>
-    <ul class="qualification-list">
-      {cv.languages.map((language) => <li>{`${language.name}: ${language.level}/10`}</li>)}
-    </ul>
-  </section>
-
-  <section class="skills-section print-document">
-    <h2>Qualifications & Trainings</h2>
-    <ul class="qualification-list">
-      {cv.qualifications.map((qualification) => <li>{qualification}</li>)}
-    </ul>
-  </section>
-
-  <section class="skills-section print-document">
-    <h2>Additional Milestones</h2>
-    <ul class="milestone-list">
-      {cv.milestones.map((milestone) => <li>{milestone}</li>)}
-    </ul>
-  </section>
-
-  <section class="skills-section print-document">
-    <h2>Contact</h2>
-    <ul class="contact-links print-contact-list">
-      <li>Email: <a href="mailto:davi2812@hotmail.com">davi2812@hotmail.com</a></li>
-      <li>
-        GitHub: <a href="https://github.com/Marcus-Forte" target="_blank" rel="noopener noreferrer"
-          >github.com/Marcus-Forte</a
-        >
-      </li>
-      <li>
-        LinkedIn: <a href="https://www.linkedin.com/in/marcus-forte-4b500a118" target="_blank" rel="noopener noreferrer"
-          >linkedin.com/in/marcus-forte-4b500a118</a
-        >
-      </li>
-      <li>
-        YouTube: <a href="https://www.youtube.com/@practicalsoftwaremarcus" target="_blank" rel="noopener noreferrer"
-          >youtube.com/@practicalsoftwaremarcus</a
-        >
-      </li>
-    </ul>
-  </section>
+    <section class="skills-section print-document">
+      <h2>Contact</h2>
+      <ul class="contact-links print-contact-list">
+        <li>Email: <a href="mailto:davi2812@hotmail.com">davi2812@hotmail.com</a></li>
+        <li>
+          GitHub: <a href="https://github.com/Marcus-Forte" target="_blank" rel="noopener noreferrer"
+            >github.com/Marcus-Forte</a
+          >
+        </li>
+        <li>
+          LinkedIn: <a
+            href="https://www.linkedin.com/in/marcus-forte-4b500a118"
+            target="_blank"
+            rel="noopener noreferrer">linkedin.com/in/marcus-forte-4b500a118</a
+          >
+        </li>
+        <li>
+          YouTube: <a href="https://www.youtube.com/@practicalsoftwaremarcus" target="_blank" rel="noopener noreferrer"
+            >youtube.com/@practicalsoftwaremarcus</a
+          >
+        </li>
+      </ul>
+    </section>
+  </div>
 </BaseLayout>
+
+<div id="pdf-cv-data" data-json={encodeURIComponent(JSON.stringify({ cv, skillKinds }))} hidden></div>
+
+<script>
+  // @ts-nocheck
+  const dataNode = document.getElementById("pdf-cv-data");
+  const rawData = dataNode?.getAttribute("data-json") ?? "";
+  const parsedData = rawData ? JSON.parse(decodeURIComponent(rawData)) : {};
+  const cvData = parsedData.cv ?? {};
+  const skillKindsData = parsedData.skillKinds ?? [];
+
+  const normalizeLineBreaks = (value) => value.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  const textToPdfText = (value) =>
+    normalizeLineBreaks(String(value ?? ""))
+      .replace(/<br\s*\/?\s*>/gi, "\n")
+      .replace(/<[^>]+>/g, "")
+      .trim();
+
+  const exportButton = document.querySelector("[data-export-pdf]");
+
+  const htmlToPlainText = (value) => {
+    return textToPdfText(value ?? "");
+  };
+
+  const buildProjectBlock = (project, skillsById) => {
+    const lines = [];
+
+    if (project.period) {
+      lines.push({ text: project.period, color: "#58a6ff", bold: true, fontSize: 9, margin: [0, 0, 0, 2] });
+    }
+
+    if (project.company) {
+      lines.push({ text: project.company, color: "#2f6fb0", bold: true, fontSize: 10, margin: [0, 0, 0, 2] });
+    }
+
+    lines.push({ text: project.title, color: "#f0f6fc", bold: true, fontSize: 12, margin: [0, 0, 0, 4] });
+
+    if (project.role) {
+      lines.push({ text: project.role, color: "#8b949e", fontSize: 10, margin: [0, 0, 0, 6] });
+    }
+
+    lines.push({ text: htmlToPlainText(project.description), margin: [0, 0, 0, 6] });
+
+    if ((project.responsabilities?.length ?? 0) > 0) {
+      lines.push({ text: "Responsabilities", color: "#f0f6fc", bold: true, fontSize: 10, margin: [0, 6, 0, 4] });
+      lines.push({ ul: project.responsabilities.map((item) => htmlToPlainText(item)), margin: [0, 0, 0, 6] });
+    }
+
+    const skillNames = (project.skills ?? []).map((skillId) => skillsById.get(skillId) ?? skillId);
+    if (skillNames.length > 0) {
+      lines.push({ text: `Skills: ${skillNames.join(" • ")}`, color: "#c9d1d9", fontSize: 9 });
+    }
+
+    return { stack: lines, margin: [0, 0, 0, 12] };
+  };
+
+  if (exportButton instanceof HTMLButtonElement) {
+    exportButton.addEventListener("click", async () => {
+      const originalLabel = exportButton.textContent ?? "Download PDF";
+      exportButton.disabled = true;
+      exportButton.textContent = "Generating PDF...";
+
+      try {
+        const [pdfMakeModule, pdfFontsModule] = await Promise.all([
+          import("pdfmake/build/pdfmake"),
+          import("pdfmake/build/vfs_fonts"),
+        ]);
+
+        const pdfMake = pdfMakeModule.default ?? pdfMakeModule;
+        const fontVfs = pdfFontsModule?.default ?? pdfFontsModule?.["module.exports"] ?? pdfFontsModule;
+
+        if (!fontVfs) {
+          throw new Error("Could not resolve pdfmake virtual font data (vfs)");
+        }
+
+        pdfMake.addVirtualFileSystem(fontVfs);
+
+        const skillsById = new Map((cvData.skills ?? []).map((skill) => [skill.id, skill.name]));
+
+        const documentDefinition = {
+          pageSize: "A4",
+          pageMargins: [28, 28, 28, 28],
+          background: () => ({ canvas: [{ type: "rect", x: 0, y: 0, w: 595.28, h: 841.89, color: "#0d1117" }] }),
+          defaultStyle: { color: "#c9d1d9", fontSize: 10, lineHeight: 1.35 },
+          styles: {
+            title: { color: "#f0f6fc", bold: true, fontSize: 22, margin: [0, 0, 0, 12] },
+            sectionTitle: { color: "#58a6ff", bold: true, fontSize: 14, margin: [0, 14, 0, 8] },
+            card: { margin: [0, 0, 0, 14] },
+            muted: { color: "#8b949e" },
+          },
+          content: [
+            { text: "Marcus Forte", style: "title" },
+            { text: "About", style: "sectionTitle" },
+            { text: htmlToPlainText(cvData.about) },
+
+            { text: "Projects", style: "sectionTitle" },
+            ...(cvData.projects ?? []).map((project) => ({ ...buildProjectBlock(project, skillsById), style: "card" })),
+
+            { text: "Personal Projects", style: "sectionTitle" },
+            ...(cvData.personalProjects ?? []).map((project) => ({
+              ...buildProjectBlock(project, skillsById),
+              style: "card",
+            })),
+
+            { text: "Education", style: "sectionTitle" },
+            ...(cvData.educations ?? []).map((education) => ({
+              stack: [
+                { text: education.period, color: "#58a6ff", bold: true, fontSize: 9 },
+                {
+                  text: `${education.degree} - ${education.institution}`,
+                  color: "#f0f6fc",
+                  bold: true,
+                  margin: [0, 2, 0, 2],
+                },
+                { text: education.course },
+              ],
+              margin: [0, 0, 0, 10],
+            })),
+
+            { text: "Skills", style: "sectionTitle" },
+            ...skillKindsData.map((kind) => ({
+              stack: [
+                { text: kind, color: "#f0f6fc", bold: true, margin: [0, 4, 0, 2] },
+                {
+                  text: (cvData.skills ?? [])
+                    .filter((skill) => skill.kind === kind)
+                    .map((skill) => `${skill.name} (${skill.level}/10)`)
+                    .join(" • "),
+                },
+              ],
+              margin: [0, 0, 0, 6],
+            })),
+
+            { text: "Languages", style: "sectionTitle" },
+            { ul: (cvData.languages ?? []).map((language) => `${language.name}: ${language.level}/10`) },
+
+            { text: "Qualifications & Trainings", style: "sectionTitle" },
+            { ul: cvData.qualifications ?? [] },
+
+            { text: "Additional Milestones", style: "sectionTitle" },
+            { ul: cvData.milestones ?? [] },
+
+            { text: "Contact", style: "sectionTitle" },
+            {
+              ul: [
+                "Email: davi2812@hotmail.com",
+                "GitHub: github.com/Marcus-Forte",
+                "LinkedIn: linkedin.com/in/marcus-forte-4b500a118",
+                "YouTube: youtube.com/@practicalsoftwaremarcus",
+              ],
+            },
+          ],
+        };
+
+        pdfMake.createPdf(documentDefinition).download("Marcus-Forte-CV.pdf");
+      } catch (error) {
+        console.error("PDF export failed", error);
+        alert("Could not generate PDF. Please try again.");
+      } finally {
+        exportButton.disabled = false;
+        exportButton.textContent = originalLabel;
+      }
+    });
+  }
+</script>

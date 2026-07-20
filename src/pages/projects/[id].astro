@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cv } from "../../data/marcus";
+import { textToHtmlBreaks } from "../../utils/text";
 
 export function getStaticPaths() {
   return cv.projects.map((project) => ({ params: { id: project.id } }));
@@ -53,7 +54,16 @@ if (!project) {
     <p class="eyebrow">Project Detail</p>
     <div class="project-title-row">
       <h1>{project.title}</h1>
-      {project.logo && <img src={project.logo} alt={`${project.company} logo`} class="project-logo" loading="lazy" />}
+      {
+        project.logo && (
+          <img
+            src={project.logo}
+            alt={`${project.company} logo`}
+            class:list={["project-logo", { "project-logo--vector": project.logo.toLowerCase().includes(".svg") }]}
+            loading="lazy"
+          />
+        )
+      }
     </div>
     <p class="project-role">{project.role}</p>
     <p class="company-badge">{project.company}</p>
@@ -62,7 +72,19 @@ if (!project) {
 
   <section class="skills-section">
     <h2>Description</h2>
-    <p>{project.description}</p>
+    <p set:html={textToHtmlBreaks(project.description)} />
+    {
+      (project.responsabilities?.length ?? 0) > 0 && (
+        <>
+          <p class="project-responsabilities-title">Responsabilities</p>
+          <ul class="project-responsabilities" aria-label="Key responsibilities">
+            {project.responsabilities?.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </>
+      )
+    }
   </section>
 
   {

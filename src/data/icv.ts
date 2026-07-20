@@ -7,27 +7,21 @@ export interface Education {
 
 export interface Project<TSkillId extends string = string> {
   id: string;
-  company: string;
+  company?: string;
   logo?: string;
   title: string;
-  period: string;
-  role: string;
+  period?: string;
+  role?: string;
   description: string;
+  responsabilities?: string[];
   skills: TSkillId[];
   images?: string[];
   gifUrl?: string;
   videoEmbedUrl?: string;
+  gif?: string;
 }
 
-export interface PersonalProject<TSkillId extends string = string> {
-  id: string;
-  title: string;
-  description: string;
-  skills: TSkillId[];
-  images?: string[];
-  gif?: string;
-  video?: string;
-}
+export interface PersonalProject<TSkillId extends string = string> extends Project<TSkillId> {}
 
 export type ProficiencyLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export type SkillKind = "Design" | "Technology" | "People" | "Technique";
@@ -46,6 +40,7 @@ export interface Skill {
 export type Milestone = string;
 
 export interface CurriculumVitae<TSkillId extends string = string> {
+  name: string;
   about: string;
   skillsSummary: string;
   educations: Education[];

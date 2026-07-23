@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { cv } from "../data/marcus";
+import type { SkillKind } from "../data/icv";
 
 interface Props {
   title?: string;
@@ -7,6 +9,8 @@ interface Props {
 }
 
 const { title = "Marcus Forte", description = "Marcus Forte - personal site" } = Astro.props;
+
+const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
 ---
 
 <!doctype html>
@@ -28,7 +32,7 @@ const { title = "Marcus Forte", description = "Marcus Forte - personal site" } =
           <li><a href="/#milestones">Additional Milestones</a></li>
           <li><a href="/personal-projects">Personal Projects</a></li>
           <li><a href="/#contact">Contact</a></li>
-          <li><a href="/print" class="nav-print-link">Print Full CV</a></li>
+          <li><button type="button" class="nav-export btn" data-export-pdf>Export PDF</button></li>
         </ul>
       </nav>
     </header>
@@ -42,3 +46,9 @@ const { title = "Marcus Forte", description = "Marcus Forte - personal site" } =
     </footer>
   </body>
 </html>
+
+<div id="pdf-cv-data" data-json={encodeURIComponent(JSON.stringify({ cv, skillKinds }))} hidden></div>
+
+<script>
+  import "../scripts/pdf-export";
+</script>

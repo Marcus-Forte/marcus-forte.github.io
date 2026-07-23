@@ -74,14 +74,17 @@ nav a:hover {
   color: var(--accent);
 }
 
-.nav-print-link {
-  border: 1px solid var(--accent);
-  border-radius: 999px;
+.nav-export {
+  border: 0.1px solid var(--accent);
+  border-radius: 100px;
   color: var(--accent);
-  padding: 0.32rem 0.7rem;
+  padding: 0.1rem 0.7rem;
+  line-height: 1.4;
 }
-
-.nav-print-link:hover {
+button.nav-export {
+  padding: 0.1rem 0.7rem;
+}
+.nav-export:hover {
   background: color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
@@ -700,7 +703,7 @@ footer {
     font-size: 0.78rem;
   }
 
-  .nav-print-link {
+  .nav-export {
     padding: 0.22rem 0.48rem;
   }
 
@@ -741,7 +744,7 @@ footer {
   header,
   footer,
   .print-page-actions,
-  .nav-print-link,
+  .nav-export,
   .image-lightbox {
     display: none !important;
   }

@@ -359,6 +359,147 @@ Has a deep appreciation for applied cyber-physical software, high performance co
       course: "Electrical Engineering.",
     },
   ],
+  publications: [
+    {
+      category: "Journal article",
+      authors:
+        "RODRIGUES, REJANE C.SÁ; SOMBRA, ANDRESA K.R.; TORRICO, BISMARK C.; PEREIRA, RENÉ D.O.; FORTE, MARCUS D.DO N.; FILHO, MAGNO P. DE ALMEIDA; NOGUEIRA, FABRÍCIO G.",
+      title: "Tuning Rules for Unstable Dead-Time Processes",
+      venue: "European Journal of Control",
+      year: 2020,
+      details: "vol. 1, p. 1",
+    },
+    {
+      category: "Journal article",
+      authors:
+        "TORRICO, BISMARK C.; ALMEIDA FILHO, MAGNO P. DE; LIMA, THIAGO A.; FORTE, MARCUS D. DO N.; SÁ, REJANE C.; NOGUEIRA, FABRÍCIO G.",
+      title: "Tuning of a dead-time compensator focusing on industrial processes",
+      venue: "ISA Transactions",
+      year: 2018,
+      details: "vol. 83, pp. 189-198",
+    },
+    {
+      category: "Journal article",
+      authors: "FORTE, MARCUS D.N.; CORREIA, WILKLEY B.; NOGUEIRA, FABRÍCIO G.; TORRICO, BISMARK C.",
+      title: "Reference Tracking of a Nonholonomic Mobile Robot using Sensor Fusion Techniques and Linear Control",
+      venue: "IFAC-PapersOnLine",
+      year: 2018,
+      details: "vol. 51, pp. 364-369",
+    },
+    {
+      category: "Conference paper",
+      authors: "FORTE, MARCUS; NETO, POLYCARPO; THÉ, GEORGE; NOGUEIRA, FABRICIO",
+      title: "Altitude Correction of an UAV Assisted by Point Cloud Registration of LiDAR Scans",
+      venue: "18th International Conference on Informatics in Control, Automation and Robotics",
+      year: 2021,
+      details: "Online; proceedings, p. 485",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "T. SANTOS, JUDÁ; D. N. FORTE, MARCUS; R. T. DE SOUSA, NADSON; C. BRANCO, ITALO; G. NOGUEIRA, FABRICIO; C. TORRICO, BISMARK",
+      title: "Sistema VANT para Reconstrução Tridimensional na Indústria",
+      venue: "Congresso Brasileiro de Automática 2020",
+      year: 2020,
+      details: "Anais do Congresso Brasileiro de Automática 2020",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "BRANCO, I. R. A. C.; SOUSA, N. R. T.; FORTE, MARCUS; DE PAULA, ADRIANO RODRIGUES; NOGUEIRA, F. G.; TORRICO, B. C.; CORREIA, W. B.",
+      title: "Sistema aéreo de volumetria automática para controle de estoque de carvão mineral em termelétricas",
+      venue: "Simpósio Brasileiro de Sistemas Elétricos (SBSE)",
+      year: 2020,
+      details: "Santo André, SP",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "LIMA, THIAGO ALVES; TORRICO, BISMARK CLAURE; ALMEIDA FILHO, MAGNO P. DE; FORTE, MARCUS D.N.; PEREIRA, R. D. O.; NOGUEIRA, FABRICIO GONZALEZ",
+      title: "First-order Dead-time Compensation with Feedfoward Action",
+      venue: "European Control Conference",
+      year: 2019,
+      details: "Naples",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "GOMES MONTEIRO FILHO, CLAUDIO; FORTE, MARCUS; TORRICO, BISMARK CLAURE; BEZERRA CORREIA, WILKLEY; NOGUEIRA, FABRÍCIO",
+      title: "LPV Controller Design for Terrestrial Mobile Robot with Tilt Compensation",
+      venue: "14º Simpósio Brasileiro de Automação Inteligente",
+      year: 2019,
+      details: "Anais do 14º Simpósio Brasileiro de Automação Inteligente",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "SOBREIRA MUNIZ, SAULO; FORTE, MARCUS; BARRETO, GUILHERME; NOGUEIRA, FABRÍCIO; TORRICO, BISMARK CLAURE; BARRA JR., WALTER",
+      title: "Modelagem e controle LPV misto H2/H∞ para um helicóptero",
+      venue: "14º Simpósio Brasileiro de Automação Inteligente",
+      year: 2019,
+      details: "Anais do 14º Simpósio Brasileiro de Automação Inteligente",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "TEIXEIRA SANTOS, JUDÁ; FORTE, MARCUS; RODRIGUES DE PAULA, ADRIANO; TOMÉ DE SOUSA, NADSON RENAN; ALVES LIMA, THIAGO; PRUDÊNCIO DE ALMEIDA FILHO, MAGNO; ROSSE ALVES CASTELO BRANCO, ITALO; BEZERRA CORREIA, WILKLEY; TORRICO, BISMARK CLAURE; NOGUEIRA, FABRÍCIO",
+      title: "Desenvolvimento de Instrumentação para geração de nuvem de pontos usando sensores inerciais e LiDAR",
+      venue: "14º Simpósio Brasileiro de Automação Inteligente",
+      year: 2019,
+      details: "Anais do 14º Simpósio Brasileiro de Automação Inteligente",
+    },
+    {
+      category: "Conference paper",
+      authors: "DO NASCIMENTO FORTE, MARCUS DAVI; NOGUEIRA, F. G.; TORRICO, B. C.",
+      title: "Development of a Digital Frequency Meter for Signal Analysis on a Respiratory Physiontherapy Equipment",
+      venue: "CBA",
+      year: 2018,
+      details: "João Pessoa; Anais do CBA 2018",
+    },
+    {
+      category: "Conference paper",
+      authors: "LOBO, T. D.; DO NASCIMENTO FORTE, MARCUS DAVI; NOGUEIRA, F. G.; TORRICO, B. C.; LIMA, THIAGO A.; ARAUJO, J. P.",
+      title: "Controle Adaptativo Auto-Ajustável para Controle de Seguimento de Trajetória de um Robô Móvel",
+      venue: "CBA",
+      year: 2018,
+      details: "João Pessoa; Anais do CBA 2018",
+    },
+    {
+      category: "Conference paper",
+      authors: "CESAR, T. A.; GOMES FILHO, C.; DO NASCIMENTO FORTE, MARCUS DAVI; LIMA, THIAGO A.; BRAGA, A. P. S.",
+      title: "Path Planning of Mobile Robot with Growing Neural Gas and Ant Colony Optimization",
+      venue: "CBA",
+      year: 2018,
+      details: "João Pessoa; Anais do CBA 2018",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "ROCHA, K. D. T.; LIMA, THIAGO ALVES; FORTE, M. D. N.; COMBERIATE, M.; NOGUEIRA, F. G.; TORRICO, BISMARK CLAURE; CORREIA, W. B.",
+      title: "Path Tracking Control of a Tracked Mobile Robot",
+      venue: "Simpósio Brasileiro de Automação Inteligente",
+      year: 2017,
+      details: "Porto Alegre; Anais do XIII Simpósio Brasileiro de Automação Inteligente",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "SOUSA, RIGOBERTO LUIS SILVA; DO NASCIMENTO FORTE, MARCUS DAVI; NOGUEIRA, FABRICIO GONZALEZ; TORRICO, BISMARK CLAURE",
+      title: "Trajectory tracking control of a nonholonomic mobile robot with differential drive",
+      venue: "2016 IEEE Biennial Congress of Argentina (ARGENCON)",
+      year: 2016,
+      details: "Buenos Aires; p. 1",
+    },
+    {
+      category: "Conference paper",
+      authors:
+        "LIMA, THIAGO ALVES; DAVI DO NASCIMENTO FORTE, MARCUS; NOGUEIRA, FABRICIO GONZALEZ; TORRICO, BISMARK CLAURE; DE PAULA, ADRIANO RODRIGUES",
+      title: "Trajectory tracking control of a mobile robot using lidar sensor for position and orientation estimation",
+      venue: "2016 12th IEEE International Conference on Industry Applications (INDUSCON)",
+      year: 2016,
+      details: "Curitiba; p. 1",
+    },
+  ],
   projects,
   personalProjects,
   languages: [

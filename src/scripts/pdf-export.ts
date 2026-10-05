@@ -140,6 +140,35 @@ export const generateAndDownloadPdf = async (btnToUpdate?: HTMLButtonElement | n
         { text: "Qualifications & Trainings", style: "sectionTitle" },
         { ul: cvData.qualifications ?? [] },
 
+        { text: "Publications", style: "sectionTitle" },
+        ...(["Journal article", "Conference paper"] as const).flatMap((category) => {
+          const publications = (cvData.publications ?? []).filter(
+            (publication: { category: string }) => publication.category === category,
+          );
+
+          return [
+            { text: category === "Journal article" ? "Journal Articles" : "Conference Papers", bold: true, margin: [0, 2, 0, 6] },
+            ...publications.map(
+              (publication: {
+                authors: string;
+                title: string;
+                venue: string;
+                year: number;
+                details?: string;
+              }) => ({
+                stack: [
+                  { text: [{ text: `${publication.authors}. ` }, { text: publication.title, bold: true }] },
+                  {
+                    text: [publication.venue, publication.year, publication.details].filter(Boolean).join(", "),
+                    color: "#8b949e",
+                  },
+                ],
+                margin: [0, 0, 0, 10],
+              }),
+            ),
+          ];
+        }),
+
         { text: "Additional Milestones", style: "sectionTitle" },
         { ul: cvData.milestones ?? [] },
 

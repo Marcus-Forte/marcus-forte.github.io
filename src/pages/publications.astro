@@ -1,0 +1,48 @@
+---
+import { cv } from "../data/marcus";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const publicationCategories = [
+  { category: "Journal article", title: "Journal Articles" },
+  { category: "Conference paper", title: "Conference Papers" },
+] as const;
+---
+
+<BaseLayout
+  title="Publications | Marcus Forte"
+  description="Journal articles and conference papers by Marcus Forte."
+>
+  <section class="page-intro">
+    <p class="eyebrow">Research & Publications</p>
+    <h1>Publications</h1>
+    <p class="subtitle">{cv.publications.length} journal articles and conference papers.</p>
+  </section>
+
+  {
+    publicationCategories.map(({ category, title }) => {
+      const publications = cv.publications.filter((publication) => publication.category === category);
+
+      return (
+        <section class="publication-section">
+          <div class="section-heading">
+            <h2>{title}</h2>
+            <span class="item-count">{publications.length}</span>
+          </div>
+          <ol class="publication-list">
+            {publications.map((publication) => (
+              <li class="publication-item">
+                <p class="card-period">{publication.year}</p>
+                <h3>{publication.title}</h3>
+                <p class="publication-authors">{publication.authors}</p>
+                <p class="publication-venue">
+                  {publication.venue}, {publication.year}
+                  {publication.details && ` — ${publication.details}`}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      );
+    })
+  }
+</BaseLayout>

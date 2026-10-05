@@ -401,6 +401,34 @@ h3 {
   max-width: 42rem;
 }
 
+.publication-section {
+  padding-top: 2rem;
+}
+
+.publication-list {
+  display: grid;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.publication-item {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+}
+
+.publication-item h3 {
+  color: var(--accent-dark);
+}
+
+.publication-authors,
+.publication-venue {
+  font-size: 0.9rem;
+}
+
+.publication-authors {
+  color: var(--muted);
+}
+
 .print-page-actions {
   margin-top: 1rem;
 }

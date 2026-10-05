@@ -5,6 +5,15 @@ export interface Education {
   course: string;
 }
 
+export interface Publication {
+  category: "Journal article" | "Conference paper";
+  authors: string;
+  title: string;
+  venue: string;
+  year: number;
+  details?: string;
+}
+
 export interface Project<TSkillId extends string = string> {
   id: string;
   company?: string;
@@ -44,6 +53,7 @@ export interface CurriculumVitae<TSkillId extends string = string> {
   about: string;
   skillsSummary: string;
   educations: Education[];
+  publications: Publication[];
   projects: Project<TSkillId>[];
   personalProjects: PersonalProject<TSkillId>[];
   languages: Language[];

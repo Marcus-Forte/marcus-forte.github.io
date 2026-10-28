@@ -29,4 +29,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       }
     </ol>
   </section>
+
+  <section class="skills-section">
+    <p class="eyebrow">Professional Development</p>
+    <h2>Courses & Trainings</h2>
+    <ul class="qualification-list">
+      {cv.qualifications.map((qualification) => <li>{qualification}</li>)}
+    </ul>
+  </section>
 </BaseLayout>

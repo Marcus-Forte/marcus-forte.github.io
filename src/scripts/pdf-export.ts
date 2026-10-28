@@ -115,6 +115,8 @@ export const generateAndDownloadPdf = async (btnToUpdate?: HTMLButtonElement | n
             margin: [0, 0, 0, 10],
           }),
         ),
+        { text: "Courses & Trainings", bold: true, margin: [0, 2, 0, 6] },
+        { ul: cvData.qualifications ?? [] },
 
         { text: "Skills", style: "sectionTitle" },
         ...skillKindsData.map((kind) => ({
@@ -136,9 +138,6 @@ export const generateAndDownloadPdf = async (btnToUpdate?: HTMLButtonElement | n
             (language: { name: string; level: number }) => `${language.name}: ${language.level}/10`,
           ),
         },
-
-        { text: "Qualifications & Trainings", style: "sectionTitle" },
-        { ul: cvData.qualifications ?? [] },
 
         { text: "Publications", style: "sectionTitle" },
         ...(["Journal article", "Conference paper"] as const).flatMap((category) => {

@@ -458,7 +458,8 @@ Has a deep appreciation for applied cyber-physical software, high performance co
     },
     {
       category: "Conference paper",
-      authors: "LOBO, T. D.; DO NASCIMENTO FORTE, MARCUS DAVI; NOGUEIRA, F. G.; TORRICO, B. C.; LIMA, THIAGO A.; ARAUJO, J. P.",
+      authors:
+        "LOBO, T. D.; DO NASCIMENTO FORTE, MARCUS DAVI; NOGUEIRA, F. G.; TORRICO, B. C.; LIMA, THIAGO A.; ARAUJO, J. P.",
       title: "Controle Adaptativo Auto-Ajustável para Controle de Seguimento de Trajetória de um Robô Móvel",
       venue: "CBA",
       year: 2018,
@@ -510,11 +511,11 @@ Has a deep appreciation for applied cyber-physical software, high performance co
   ],
   skills,
   qualifications: [
+    "2026 - Good Software Architecture, by Robert Deckers, High Tech Institute",
     "2023 - Technical Architect, ICT Group",
     "2023 - Architect in The Organization, ICT Group",
     "2022 - Software Domain-Driven Design, ICT Group",
     "2022 - Thinking Critically and Talking Clearly, ICT Group",
-    "2017 - Solar Panel Project Design Course, FOTAIC",
   ],
   milestones: [
     "2024 - Started Practical Software, a YouTube channel for sharing software-engineering knowledge.",

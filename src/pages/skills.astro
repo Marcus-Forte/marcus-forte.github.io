@@ -8,11 +8,11 @@ const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
 
 <BaseLayout
   title="Skills | Marcus Forte"
-  description="Technical skills, professional qualifications, and languages of Marcus Forte."
+  description="Technical skills and languages of Marcus Forte."
 >
   <section class="page-intro">
     <p class="eyebrow">Capabilities</p>
-    <h1>Skills & Qualifications</h1>
+    <h1>Skills</h1>
     <p class="subtitle">{cv.skillsSummary}</p>
   </section>
 
@@ -57,13 +57,5 @@ const skillKinds: SkillKind[] = ["Design", "Technology", "People", "Technique"];
         ))
       }
     </div>
-  </section>
-
-  <section class="skills-section">
-    <p class="eyebrow">Professional Development</p>
-    <h2>Qualifications & Trainings</h2>
-    <ul class="qualification-list">
-      {cv.qualifications.map((qualification) => <li>{qualification}</li>)}
-    </ul>
   </section>
 </BaseLayout>

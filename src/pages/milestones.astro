@@ -1,0 +1,21 @@
+---
+import { cv } from "../data/marcus";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Milestones | Marcus Forte"
+  description="Additional milestones and achievements of Marcus Forte."
+>
+  <section class="page-intro">
+    <p class="eyebrow">Beyond the Work</p>
+    <h1>Additional Milestones</h1>
+    <p class="subtitle">Community, innovation, and knowledge-sharing highlights.</p>
+  </section>
+
+  <section class="skills-section">
+    <ul class="milestone-list">
+      {cv.milestones.map((milestone) => <li>{milestone}</li>)}
+    </ul>
+  </section>
+</BaseLayout>

@@ -1,7 +1,7 @@
 {
   "name": "github.io",
   "build": { "dockerfile": "Dockerfile" },
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "npm ci",
   "forwardPorts": [4321],
   "portsAttributes": { "4321": { "label": "Astro Dev Server", "onAutoForward": "openPreview" } },
   "customizations": {

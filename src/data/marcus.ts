@@ -1,7 +1,8 @@
 import type { CurriculumVitae } from "./icv";
 
 export const skills = [
-  { id: "software-architecture", name: "Software Architecture & Software Design", level: 8, kind: "Design" },
+  { id: "software-architecture", name: "Software Architecture", level: 8, kind: "Design" },
+  { id: "software-design", name: "Software Design", level: 9, kind: "Design" },
   { id: "data-definitions", name: "Data Definitions, gRPC, FlatBuffers", level: 10, kind: "Design" },
   { id: "cpp", name: "C++14/C++17/C++20/C++23", level: 10, kind: "Technology" },
   { id: "embedded-cpp", name: "Embedded C++", level: 8, kind: "Technology" },
@@ -46,12 +47,16 @@ export const skills = [
   { id: "ooad", name: "OOAD", level: 9, kind: "Technique" },
   { id: "instrumentation-engineering", name: "Instrumentation Engineering", level: 5, kind: "Technique" },
   { id: "domain-driven-design", name: "Domain-Driven Design", level: 7, kind: "Design" },
+  { id: "rag", name: "Retrieval-Augmented Generation (RAG)", level: 8, kind: "Technology" },
+  { id: "vector-db", name: "Vector Database", level: 8, kind: "Technology" },
   { id: "react", name: "React", level: 4, kind: "Technique" },
-  { id: "devops", name: "DevOps", level: 9, kind: "Technique" },
-  { id: "digital-twins", name: "Digital Twins", level: 6, kind: "Technique" },
+  { id: "devops", name: "DevOps", level: 7, kind: "Technique" },
+  { id: "digital-twins", name: "Digital Twins", level: 5, kind: "Technique" },
   { id: "solid-architecture", name: "SOLID Architecture", level: 7, kind: "Design" },
   { id: "control-systems", name: "Control Systems", level: 9, kind: "Technique" },
+  { id: "sycl", name: "SYCL (Languague)", level: 7, kind: "Technology" },
   { id: "uav", name: "UAV", level: 7, kind: "Technology" },
+  { id: "mcp", name: "Model Context Protocol (MCP)", level: 9, kind: "Technology" },
 ] as const;
 
 export type MarcusSkillId = (typeof skills)[number]["id"];
@@ -93,16 +98,47 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
     logo: "/vl.png",
   },
   {
+    id: "corporate-ai-agent-framework",
+    company: "Sioux Technologies",
+    title: "Corporate AI Agent Framework",
+    period: "10/2026 - Current",
+    role: "Software Architect",
+    description:
+      "A corporate-wide AI framework that enables employees from every department (e.g. managers, engineers, architects, HR, and finance) to develop their own skills and agents, which are then shared across the organization. Quality is ensured by a dedicated agent test environment and a CI/CD pipeline. The framework provides standardized MCP usage with role-based access control (RBAC), a standardized interface for accessing company data, and a standardized way to develop and publish agents. The employee-matching and scheduling process tackled by the genAI Knowledge Management project served as the foundation for this framework.",
+    skills: [
+      "software-architecture",
+      "mcp",
+      "llm",
+      "ci-cd",
+      "devops",
+      "ai-assisted-development",
+      "technical-team-leadership",
+      "multi-disciplinary-teamwork",
+    ],
+    responsabilities: [
+      "Creating, piloting, and maintaining the system architecture",
+      "Leading a team of engineers and business managers",
+      "Defining standardized MCP usage with RBAC",
+      "Defining a standardized interface to access company data",
+      "Establishing a standardized workflow to develop and publish agents",
+      "Establishing the agent test environment and CI/CD system",
+    ],
+    logo: "/sioux.png",
+  },
+  {
     id: "genai-knowledge-management",
     company: "Sioux Technologies",
     title: "genAI Knowledge Management",
     period: "08/2024 - Current",
     role: "Software Architect",
     description:
-      "Piloted and created an internal system that assists with project and knowledge matching for customer problems. The system allows users such as project managers or group leads to search for employees that match a problem or a project for a customer, as well as validate employee availability.",
-    skills: ["langchain", "python", "microsoft-azure", "github-copilot", "docker", "llm", "react"],
+      "Piloted and created an internal system that assists with project and knowledge matching for customer problems. The system allows users such as project managers or group leads to update and search for employees that match a problem or a project for a customer, as well as validate employee availability.",
+    skills: ["langchain", "python", "microsoft-azure", "github-copilot", "docker", "llm", "react", "rag", "vector-db"],
     responsabilities: [
-      "Architecture of the System, including vector DB schema, knowledge indexation, user experience, and more.",
+      "Development of RAG-based chatbot for managers",
+      "Architecture of the system",
+      "System design and implementation",
+      "Validation of the system with stakeholders",
       "Azure Cloud Deployment",
       "Data privacy and security considerations",
     ],

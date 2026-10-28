@@ -3,8 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { cv } from "../data/marcus";
 import marcusPhoto from "../marcus.png";
 import { textToHtmlBreaks } from "../utils/text";
+import { buildTimeline } from "../utils/timeline";
 
 const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
+const timeline = buildTimeline(cv.projects);
 ---
 
 <BaseLayout
@@ -36,9 +38,28 @@ const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
       </div>
       <span class="item-count">{cv.projects.length} projects</span>
     </div>
-    <div class="project-list">
+    <p class="timeline-legend">
+      <span class="legend-dot legend-present"></span> Ongoing
+      <span class="legend-dot"></span> Started
+      <span class="legend-dot legend-end"></span> Ended
+    </p>
+    <ol class="project-timeline" style={`--lanes: ${timeline.lanes}`}>
       {
-        cv.projects.map((project) => (
+        timeline.rows.map(({ item: project, cells }) => (
+          <li class="project-row">
+            <div class="lane-graph" aria-hidden="true">
+              {cells.map((cell, lane) => (
+                <span class={`lane lane-c${lane % 4}`}>
+                  {cell && (
+                    <span
+                      class={`lane-cell lane-${cell.kind}${cell.up ? " lane-up" : ""}${cell.down ? " lane-down" : ""}`}
+                    >
+                      <i class="lane-dot" />
+                    </span>
+                  )}
+                </span>
+              ))}
+            </div>
           <a href={`/projects/${project.id}`} class="project-card-link">
             <article class="card project-card">
               <p class="card-period">{project.period}</p>
@@ -70,8 +91,9 @@ const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
               <span class="project-link">View Project Details</span>
             </article>
           </a>
+          </li>
         ))
       }
-    </div>
+    </ol>
   </section>
 </BaseLayout>

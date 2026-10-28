@@ -102,8 +102,8 @@ const projects: CurriculumVitae<MarcusSkillId>["projects"] = [
       "Piloted and created an internal system that assists with project and knowledge matching for customer problems. The system allows users such as project managers or group leads to search for employees that match a problem or a project for a customer, as well as validate employee availability.",
     skills: ["langchain", "python", "microsoft-azure", "github-copilot", "docker", "llm", "react"],
     responsabilities: [
-      "Architecture of the system, including vector DB schema, knowledge indexation, user experience, and more.",
-      "Azure cloud deployment",
+      "Architecture of the System, including vector DB schema, knowledge indexation, user experience, and more.",
+      "Azure Cloud Deployment",
       "Data privacy and security considerations",
     ],
     logo: "/sioux.png",

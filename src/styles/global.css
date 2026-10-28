@@ -178,6 +178,167 @@ h3 {
   gap: 1rem;
 }
 
+.project-timeline {
+  --lane-w: 1.6rem;
+  --node-y: 50%;
+  list-style: none;
+}
+
+.project-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: calc(var(--lanes) * var(--lane-w)) minmax(0, 1fr);
+  padding-bottom: 1rem;
+}
+
+.project-row:last-child {
+  padding-bottom: 0;
+}
+
+.lane-graph {
+  display: flex;
+}
+
+.lane {
+  --lane-color: var(--accent);
+  flex: 0 0 var(--lane-w);
+  position: relative;
+}
+
+.lane-c1 {
+  --lane-color: #3fb950;
+}
+
+.lane-c2 {
+  --lane-color: #d29922;
+}
+
+.lane-c3 {
+  --lane-color: #bc8cff;
+}
+
+/* Faint trunk so sequential projects on the main lane stay connected */
+.lane:first-child::before {
+  background: var(--border);
+  bottom: -1rem;
+  content: "";
+  left: 50%;
+  margin-left: -1px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+}
+
+.project-row:last-child .lane:first-child::before {
+  bottom: 0;
+}
+
+.lane-cell {
+  inset: 0;
+  position: absolute;
+}
+
+.lane-cell::before,
+.lane-cell::after {
+  background: var(--lane-color);
+  content: "";
+  display: none;
+  left: 50%;
+  margin-left: -1px;
+  position: absolute;
+  width: 2px;
+}
+
+.lane-cell.lane-up::before {
+  display: block;
+  height: var(--node-y);
+  top: 0;
+}
+
+.lane-cell.lane-down::after {
+  bottom: -1rem;
+  display: block;
+  top: var(--node-y);
+}
+
+.lane-cell.lane-line .lane-dot {
+  display: none;
+}
+
+.lane-dot {
+  background: var(--lane-color);
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  box-sizing: content-box;
+  height: 0.9rem;
+  left: 50%;
+  position: absolute;
+  top: var(--node-y);
+  transform: translate(-50%, -50%);
+  width: 0.9rem;
+  z-index: 1;
+}
+
+.lane-end .lane-dot {
+  background: var(--bg);
+  border: 2px solid var(--lane-color);
+  height: 0.65rem;
+  width: 0.65rem;
+}
+
+.lane-present .lane-dot {
+  animation: lane-pulse 2s ease-out infinite;
+  box-shadow: 0 0 0 0 var(--lane-color);
+}
+
+@keyframes lane-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--lane-color) 70%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0.8rem transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lane-present .lane-dot {
+    animation: none;
+  }
+}
+
+.timeline-legend {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Courier New", monospace;
+  font-size: 0.78rem;
+  gap: 0.5rem 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.legend-dot {
+  background: var(--accent);
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.8rem;
+  margin-left: 0.8rem;
+  width: 0.8rem;
+}
+
+.legend-dot:first-child {
+  margin-left: 0;
+}
+
+.legend-present {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.legend-end {
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -481,11 +642,11 @@ h3 {
   border: 4px solid var(--bg);
   border-radius: 50%;
   content: "";
-  height: 0.8rem;
-  left: -2.48rem;
+  height: 1.1rem;
+  left: -2.63rem;
   position: absolute;
-  top: 0.1rem;
-  width: 0.8rem;
+  top: -0.05rem;
+  width: 1.1rem;
 }
 
 .timeline h2 {
@@ -713,6 +874,14 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .project-timeline {
+    --lane-w: 1.2rem;
+  }
+
+  .project-row {
+    gap: 0.6rem;
+  }
+
   h1 {
     font-size: 2.5rem;
   }

@@ -14,6 +14,12 @@ export interface Publication {
   details?: string;
 }
 
+export interface Repository {
+  name: string;
+  url: string;
+  description?: string;
+}
+
 export interface Project<TSkillId extends string = string> {
   id: string;
   company?: string;
@@ -23,6 +29,7 @@ export interface Project<TSkillId extends string = string> {
   role?: string;
   description: string;
   responsabilities?: string[];
+  repositories?: Repository[];
   skills: TSkillId[];
   images?: string[];
   gifUrl?: string;

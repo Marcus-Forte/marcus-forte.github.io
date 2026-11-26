@@ -14,8 +14,12 @@ const textToPdfText = (value: unknown) =>
 
 const htmlToPlainText = (value: unknown) => textToPdfText(value ?? "");
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const buildProjectBlock = (project: any, skillsById: Map<string, string>) => {
+const buildProjectBlock = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  project: any,
+  skillsById: Map<string, string>,
+  responsabilitiesTitle = "Responsabilities",
+) => {
   const lines: unknown[] = [];
 
   if (project.period) {
@@ -31,8 +35,19 @@ const buildProjectBlock = (project: any, skillsById: Map<string, string>) => {
   lines.push({ text: htmlToPlainText(project.description), margin: [0, 0, 0, 6] });
 
   if ((project.responsabilities?.length ?? 0) > 0) {
-    lines.push({ text: "Responsabilities", color: "#f0f6fc", bold: true, fontSize: 10, margin: [0, 6, 0, 4] });
+    lines.push({ text: responsabilitiesTitle, color: "#f0f6fc", bold: true, fontSize: 10, margin: [0, 6, 0, 4] });
     lines.push({ ul: project.responsabilities.map((item: unknown) => htmlToPlainText(item)), margin: [0, 0, 0, 6] });
+  }
+
+  if ((project.repositories?.length ?? 0) > 0) {
+    lines.push({ text: "Repositories", color: "#f0f6fc", bold: true, fontSize: 10, margin: [0, 6, 0, 4] });
+    lines.push({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ul: project.repositories.map((repo: any) => ({
+        text: [{ text: String(repo.name), link: String(repo.url), color: "#58a6ff" }, ` — ${String(repo.url)}`],
+      })),
+      margin: [0, 0, 0, 6],
+    });
   }
 
   const skillNames = (project.skills ?? []).map((skillId: string) => skillsById.get(skillId) ?? skillId);
@@ -95,7 +110,7 @@ export const generateAndDownloadPdf = async (btnToUpdate?: HTMLButtonElement | n
 
         { text: "Personal Projects", style: "sectionTitle" },
         ...(cvData.personalProjects ?? []).map((project: unknown) => ({
-          ...buildProjectBlock(project, skillsById),
+          ...buildProjectBlock(project, skillsById, "What's so cool about it"),
           style: "card",
         })),
 

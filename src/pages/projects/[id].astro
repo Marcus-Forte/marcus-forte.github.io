@@ -88,6 +88,24 @@ if (!project) {
   </section>
 
   {
+    (project.repositories?.length ?? 0) > 0 && (
+      <section class="skills-section">
+        <h2>Repositories</h2>
+        <ul class="project-repos" aria-label={`Source repositories of ${project.title}`}>
+          {project.repositories?.map((repo) => (
+            <li>
+              <a href={repo.url} target="_blank" rel="noopener noreferrer">
+                {repo.name}
+              </a>
+              {repo.description && <span> — {repo.description}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
     videoEmbedUrl && (
       <section class="skills-section">
         <h2>Video</h2>

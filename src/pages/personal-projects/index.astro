@@ -53,8 +53,8 @@ const skillsById = new Map(cv.skills.map((skill) => [skill.id, skill]));
                   <p set:html={textToHtmlBreaks(project.description)} />
                   {(project.responsabilities?.length ?? 0) > 0 && (
                     <>
-                      <p class="project-responsabilities-title">Responsabilities</p>
-                      <ul class="project-responsabilities" aria-label="Key responsibilities">
+                      <p class="project-responsabilities-title">What's so cool about it</p>
+                      <ul class="project-responsabilities" aria-label="What's so cool about it">
                         {project.responsabilities?.map((item) => (
                           <li>{item}</li>
                         ))}

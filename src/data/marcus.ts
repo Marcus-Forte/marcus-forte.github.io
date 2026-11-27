@@ -341,13 +341,14 @@ const personalProjects: CurriculumVitae<MarcusSkillId>["personalProjects"] = [
       "The scanner device is as minimal as possible, with a single 3D LiDAR sensor with integrated IMU, a single-board computer, and a battery." +
       "",
     responsabilities: [
-      "Built mslam, a LiDAR-inertial SLAM in modern C++: point-to-plane scan-to-map registration with analytical Jacobians on the SE(3) manifold, tightly coupled with IMU preintegration, scan deskewing and IMU/LiDAR time synchronisation.",
-      "Added a keyframe pose-graph back end with loop closure, verified loops by RMS and matched-fraction gates, and re-sent only keyframe poses after each optimization.",
-      "Solved the estimation with moptim, my own non-linear least-squares library (manifolds, analytical and numerical costs), and drove the sensors through msensor, my own gRPC sensor-server library for the Livox Mid360.",
-      "Designed a cache-friendly voxel hash map (contiguous point pool, robin-map index) and parallelized correspondence search and normal estimation with oneTBB, with results identical bit for bit at any thread count.",
-      "Targeted embedded deployment on a Raspberry Pi 5 (Cortex-A76 build, SIMD-tuned Eigen, Docker image), with a gRPC API that streams the map and keyframes to clients with resumable, Kafka-like offsets.",
-      "Built the tooling around it: a deterministic replay benchmark, a recorder and playback server, a scan-registration CLI, a MuJoCo LiDAR/IMU simulator with ground truth for drift measurements, a live Python 3D viewer and a TypeScript point-cloud viewer for maps of about 10 million points.",
-      "Covered the pipeline with unit and integration tests (registration, IMU preintegration, pose graph, map, gRPC server) and documented the architecture.",
+      "Fusion as one optimization: LiDAR scans and IMU preintegration are solved together as a single non-linear least-squares problem on the SE(3) manifold, with analytical Jacobians instead of slow numerical ones.",
+      "It closes loops: a keyframe pose graph spots when it returns to a known place, and a loop is accepted only if it passes strict RMS and matched-fraction checks. After a correction only the keyframe poses are re-sent, not the whole map.",
+      "Deterministic by design: oneTBB multithreading gives the exact same pose, bit for bit, at any thread count, so any speed-up is checkable against the old result.",
+      "Fast on small hardware: a cache-friendly voxel hash map and SIMD-tuned math, built for a Raspberry Pi 5 and shipped as a Docker image.",
+      "Stack I wrote myself: the optimizer (moptim), the sensor server (msensor) and the SLAM on top, all talking over gRPC.",
+      "Never loses a point: map streaming uses resumable, Kafka-like offsets, so a slow or reconnecting viewer catches up with no gaps or duplicates and never slows the SLAM.",
+      "Test it without a robot: a MuJoCo simulator flies a virtual Livox Mid360 through YAML-drawn rooms and records ground truth to measure drift, and recordings replay offline for benchmarks.",
+      "See it instantly: a live Python 3D viewer and a browser viewer that opens maps of about 10 million points.",
     ],
     skills: [
       "c",
